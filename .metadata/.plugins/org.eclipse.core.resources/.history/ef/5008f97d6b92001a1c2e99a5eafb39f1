@@ -1,0 +1,17 @@
+package com.revature.driver;
+
+import java.sql.SQLException;
+
+import com.revature.screen.LoginScreen;
+
+public class Driver {
+	
+	
+	public static void main(String[] args) throws SQLException {
+		
+		
+		LoginScreen ls = new LoginScreen();
+		ls.mainScreen();
+		System.exit(0);
+	}
+}

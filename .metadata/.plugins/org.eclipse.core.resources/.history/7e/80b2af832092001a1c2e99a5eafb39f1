@@ -1,0 +1,10 @@
+package com.revature.bean;
+
+import java.util.ArrayList;
+
+public class Employee {
+	private String username;
+	private String password;
+
+	
+}

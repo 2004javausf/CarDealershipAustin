@@ -1,0 +1,18 @@
+2020-05-06 09:26:53,690 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-05-06 09:27:34,457 [Worker-7: Creating project "AustinProject0"] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.revature.project:AustinProject0:0.0.1-SNAPSHOT @ D:\Projects\Project0-Austin\AustinProject0\pom.xml.
+2020-05-06 09:27:35,155 [Worker-7: Creating project "AustinProject0"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /AustinProject0/src/main/java
+2020-05-06 09:27:35,156 [Worker-7: Creating project "AustinProject0"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /AustinProject0/src/main/resources
+2020-05-06 09:27:35,157 [Worker-7: Creating project "AustinProject0"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /AustinProject0/src/test/java
+2020-05-06 09:27:35,157 [Worker-7: Creating project "AustinProject0"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /AustinProject0/src/test/resources
+2020-05-06 09:27:35,994 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-05-06 09:27:36,001 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-06 09:27:36,003 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-05-06 09:27:36,009 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-06 09:27:48,428 [Worker-0: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.revature.project:AustinProject0:0.0.1-SNAPSHOT @ D:\Projects\Project0-Austin\AustinProject0\pom.xml.
+2020-05-06 09:27:48,640 [Worker-0: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-05-06 09:27:48,645 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-06 09:27:48,646 [Worker-0: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-05-06 09:27:48,650 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-06 09:27:49,846 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-05-06 09:27:49,852 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-06 09:27:49,879 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!

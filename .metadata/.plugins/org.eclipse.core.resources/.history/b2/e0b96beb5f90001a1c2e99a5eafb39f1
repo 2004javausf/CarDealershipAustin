@@ -1,0 +1,13 @@
+package com.revature.bean;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Customer {
+	private String username;
+	private String password;
+	private Map<Integer, Double> owedAmount = new HashMap<Integer, Double>();
+	private Double customerOffer;
+	
+}

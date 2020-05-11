@@ -1,0 +1,18 @@
+package com.revature.bean;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Car {
+	private String make;
+	private String model; 
+	private boolean state = false;
+	private int vin;
+	private Map<String, Double> offer = new HashMap<String, Double>(); 
+	
+	
+	
+	
+	
+	
+}

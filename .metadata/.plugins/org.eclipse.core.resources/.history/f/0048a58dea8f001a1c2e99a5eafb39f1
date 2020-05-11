@@ -1,0 +1,15 @@
+package com.revature.bean;
+
+public class Car {
+	private double price;
+	private String make;
+	private String model; 
+	private boolean state = false;
+	private int vin;
+	
+	
+	
+	
+	
+	
+}

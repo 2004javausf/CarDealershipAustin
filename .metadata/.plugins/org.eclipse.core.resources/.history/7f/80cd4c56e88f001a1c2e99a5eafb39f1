@@ -1,0 +1,26 @@
+package com.revature.screen;
+
+import java.util.Scanner;
+
+public class Login {
+	
+	public static void mainMethod () {
+		Scanner scanny = new Scanner(System.in);
+		System.out.println("Welcome to Austin's Scammy Car Dealership");
+		System.out.println("Please enter an option: ");
+		System.out.println("Enter 1 for Customer login");
+		System.out.println("Enter 2 for Employee login");
+		System.out.println("Enter 3 to register for an account");
+		int option = scanny.nextInt();
+		
+//		switch (option) {
+//			case : "1"
+//				
+				
+		}
+		
+		
+	}
+
+
+

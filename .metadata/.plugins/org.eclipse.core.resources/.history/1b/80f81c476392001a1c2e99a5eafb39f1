@@ -1,0 +1,11 @@
+package com.revature.driver;
+
+import com.revature.screen.LoginScreen;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		LoginScreen.mainScreen();
+	}
+
+}

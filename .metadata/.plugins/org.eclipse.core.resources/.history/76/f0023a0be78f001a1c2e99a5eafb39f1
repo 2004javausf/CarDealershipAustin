@@ -1,0 +1,15 @@
+package com.revature.screen;
+
+import java.util.Scanner;
+
+public class Login {
+	Scanner scanny = new Scanner(System.in);
+	public static void mainMethod () {
+		
+		System.out.println("Welcome to Austin's Scammy Car Dealership");
+		System.out.println("Please enter an option: ");
+	
+	}
+}
+
+
