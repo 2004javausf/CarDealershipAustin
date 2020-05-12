@@ -1,0 +1,25 @@
+package com.revature.DAOImpl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.revature.dao.EmployeeDAO;
+import com.revature.util.ConnFactory;
+
+public class EmployeeDAOImpl implements EmployeeDAO {
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	@Override
+	public void employeeLogin() throws SQLException {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter your employee ID: ");
+		String username = scan.nextLine();
+		System.out.println("Please enter your password: ");
+		String password = scan.nextLine();
+		
+		Connection conn =
+		
+	}
+
+}

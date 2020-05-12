@@ -56,7 +56,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void customerLogin() throws SQLException {
+	public String customerLogin() throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter your login username: ");
 		String username = sc.nextLine();
@@ -65,14 +65,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		Connection conn = cf.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT USERNAME, PASSWORD FROM CUSTOMER WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "'");
+		ResultSet rs = stmt.executeQuery("SELECT CUSTOMER_USERNAME, CUSTOMER_PASSWORD FROM CUSTOMER WHERE CUSTOMER_USERNAME = '" + username + "' AND CUSTOMER_PASSWORD = '" + password + "'");
 		
 		if(rs.next() == false) {
 			System.out.println("Please try again");
+			username = null;
 			customerLogin();
 		} else {
 			System.out.println("You have successfully logged in!");
 		}
+		return username;
 	}
 
 }

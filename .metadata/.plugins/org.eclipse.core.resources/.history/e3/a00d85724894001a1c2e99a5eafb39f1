@@ -1,0 +1,51 @@
+package com.revature.DAOImpl;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.revature.dao.OfferDAO;
+import com.revature.util.ConnFactory;
+
+public class OfferDAOImpl implements OfferDAO {
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	@Override
+	public void createOffer(String username, int carVin, double offerAmount) throws SQLException {
+		offerAmount = 0.00;
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Would you like to make an offer? ('Yes' or 'No')");
+		
+		
+	}
+
+	@Override
+	public void acceptDenyOffer(String username, int carVin) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewOffers(String username) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void makePayment(String username, int carVin) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAllOffers() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

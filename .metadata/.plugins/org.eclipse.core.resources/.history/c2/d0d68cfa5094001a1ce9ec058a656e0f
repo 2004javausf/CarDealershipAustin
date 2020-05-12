@@ -1,0 +1,101 @@
+package com.revature.DAOImpl;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.revature.bean.Offer;
+import com.revature.dao.OfferDAO;
+import com.revature.util.ConnFactory;
+
+public class OfferDAOImpl implements OfferDAO {
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	@Override
+	public void createOffer(String username, int carVin, double offerAmount) throws SQLException {
+		double offerMonthlyPmt = 0;
+		int offerPmtsLeft = 0;
+		
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Would you like to make an offer? ('Yes' or 'No')");
+		String answer = scan.nextLine();
+		if (answer == "Yes") {
+			rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin );
+			if(rs.next() == true) {
+				System.out.println("You have already made an offer on this car!");
+				return;
+			}
+			rs = stmt.executeQuery("INSERT INTO OFFER VALUES(MYSEQ.NEXTVAL,'" + username + "'," + carVin + "," + offerMonthlyPmt + "," + offerAmount + "," + offerPmtsLeft + ",'NotAccepted')");
+			System.out.println("Awesome! We have received your offer!");
+			return;
+		} else if (answer == "No") {
+			System.out.println("Okay!");
+		}
+		System.out.println("Incorrect input");
+		return;
+	}
+
+	@Override
+	public void acceptDenyOffer(String username, int carVin) throws SQLException {
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin + "AND OFFER_STATUS = 'NotAccepted'");
+		Scanner s = new Scanner(System.in);
+		String offerInStringForm = "";
+		if(rs.next() == false) {
+			System.out.println("Offer not found!");
+			return;
+		}
+		ResultSet rss = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_ID = " + carVin);
+		while(rss.next()) {
+			Offer offer = new Offer(rss.getInt(1), rss.getString(2), rss.getInt(3), rss.getDouble(4), rss.getDouble(5), rss.getInt(6), rss.getString(7));
+			offerInStringForm = offer.toString();
+			System.out.println(offerInStringForm);
+		}
+		System.out.println("Would you like to accept or deny the offer? ('A' for accept and 'D' for deny)");
+		String answer = s.nextLine();
+		if(answer.equals("A")) {
+			//USE NEWCARACCEPTED SQL PROCEDURE TO UPDATE INFORMATION ON PURCHASE
+			String sql = "{ call NEWCARACCEPTED(?,?)";
+			CallableStatement call = conn.prepareCall(sql);
+			call.setString(1, username);
+			call.setInt(2, carId);
+			call.execute();
+			System.out.println("Purchase confirmed");
+			return;
+			
+		} else if(answer.equals("D")) {
+			rs = stmt.executeQuery("DELETE FROM OFFERS WHERE USERNAME = '" + username + "' AND CAR_ID = " + carId);
+			System.out.println("Offer denied and removed");
+		}
+		
+		
+		
+		
+	}
+
+	@Override
+	public void viewOffers(String username) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void makePayment(String username, int carVin) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAllOffers() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

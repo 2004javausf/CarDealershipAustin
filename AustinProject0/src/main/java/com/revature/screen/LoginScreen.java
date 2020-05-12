@@ -4,11 +4,14 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.revature.DAOImpl.CustomerDAOImpl;
+import com.revature.DAOImpl.EmployeeDAOImpl;
 
 public class LoginScreen {
 	CustomerDAOImpl cdi = new CustomerDAOImpl();
+	EmployeeDAOImpl edi = new EmployeeDAOImpl();
 	
 	public void mainScreen () throws SQLException {
+		@SuppressWarnings("resource")
 		Scanner scanny = new Scanner(System.in);
 		System.out.println("Welcome to Austin's Scammy Car Dealership");
 		System.out.println("===========================================");
@@ -20,13 +23,14 @@ public class LoginScreen {
 		
 		switch (option) {
 			case 1 :
-				CustomerScreen.loginUser();
+				cdi.customerLogin();
 			break;
 			case 2 :
-				EmployeeScreen.employeeLogin();
+				edi.employeeLogin();
 			break;
 			case 3 :
 				cdi.newAccount();
+				cdi.customerLogin();
 			break;
 			default :
 				System.out.println("Not a valid option moron");
