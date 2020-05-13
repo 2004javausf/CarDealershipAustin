@@ -19,6 +19,7 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="com.revature.util.LogMe" level = "info" additivity= "false">
+			<AppenderRef ref="Console"/>
 			<AppenderRef ref = "File"/>
 		</Logger>
 		<Root>

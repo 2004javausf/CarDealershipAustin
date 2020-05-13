@@ -89,6 +89,7 @@ do {
 	case 5:
 		quit = true;
 		break;
+
 	default :
 		System.out.println("Invalid input");
 		break;

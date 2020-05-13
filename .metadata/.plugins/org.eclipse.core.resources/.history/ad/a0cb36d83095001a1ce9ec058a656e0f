@@ -91,6 +91,46 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 	}
 
+	//@Override
+//	public void viewPayments(String username, int carVin) throws SQLException {
+//		Connection conn = cf.getConnection();
+//		Statement stmt = conn.createStatement();
+//		
+//		ResultSet rs = stmt.executeQuery("SELECT * FROM CUSTOMER WHERE CUSTOMER_USERNAME = '" + username + "'");
+//		double offerMonthlyPmt = 0;
+//		int offerPmtsLeft = 12;
+//		double offerAmount = 0;
+//		String offerStatus = "";
+//		double remainingBalance = 0;
+//		
+//		rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CAR_VIN = " + carVin + "AND CUSTOMER_USERNAME = '" + username + "'");
+//		while (rs.next()) { 
+//			offerPmtsLeft = rs.getInt(6);
+//			offerMonthlyPmt = rs.getDouble(4);
+//			offerAmount = rs.getDouble(5);
+//			offerStatus = rs.getString(7);
+//			
+//			if (offerPmtsLeft == 0) {
+//				System.out.println("This vehicle is already paid off!");
+//				return;
+//			} else if (offerStatus.equals("NotAccepted")) {
+//				System.out.println("The offer on this vehicle was declined... Cannot make payment");
+//				return;
+//			}
+//			
+//			offerMonthlyPmt= (offerAmount / (offerPmtsLeft-1));
+//			remainingBalance = offerAmount - offerMonthlyPmt;
+//			offerPmtsLeft = (int) (remainingBalance / offerMonthlyPmt); 
+//			
+//			stmt.executeUpdate("UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+//			stmt.executeUpdate("UPDATE OFFER SET OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+//			
+//			System.out.println("Thank you for making a payment for CarVIN: " + carVin);
+//			System.out.println("You have" + offerPmtsLeft + "payments left before it's paid off!");
+//			
+//		}
+//	}
+
 	@Override
 	public void viewAllOffers() throws SQLException {
 		List<Offer> offers = new ArrayList<Offer>();

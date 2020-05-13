@@ -28,7 +28,6 @@ static Logger logger = LogManager.getLogger();
 			break;
 		default:
 			System.out.println("Undefined type");
-			break;
 		}
 	}
 }

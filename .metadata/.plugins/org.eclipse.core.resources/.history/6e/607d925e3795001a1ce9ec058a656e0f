@@ -47,7 +47,7 @@ do {
 	System.out.println("1: View cars on lot");
 	System.out.println("2: Make offer on car");
 	System.out.println("3: View my cars");
-	System.out.println("4: View my monthly payment amount and car info");
+	System.out.println("4: View my monthly payment amount");
 	System.out.println("5: Exit");
 	int option = scan.nextInt();
 	
@@ -87,6 +87,15 @@ do {
 			e.printStackTrace();
 	} break;
 	case 5:
+//		Scanner sci = new Scanner(System.in);
+//		System.out.println("What is the VIN of the car you're making the payment for");
+//		carVin = sci.nextInt();
+//	try {
+////	odi.makePayment(username, carVin);
+////	} catch (SQLException e) {
+////	System.out.println("Invalid");} 
+//		break;
+	case 6:
 		quit = true;
 		break;
 	default :
