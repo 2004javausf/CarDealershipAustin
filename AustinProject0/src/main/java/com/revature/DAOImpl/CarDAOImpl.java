@@ -66,10 +66,20 @@ public class CarDAOImpl implements CarDAO {
 		return carList;
 	}
 
+	//returns the cars that the customer owns
 	@Override
 	public void getMyCars(String username) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		System.out.println(username);
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT CAR_VIN, CAR_MAKE, CAR_MODEL, CAR_YEAR FROM CAR WHERE CAR_OWNER = '" + username +"'" );
+		Car c = null;
+		String carList = "";
+		while(rs.next()) {
+			c = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+			carList = c.toString2();
+			System.out.println(carList);
+		}
 	}
 
 }

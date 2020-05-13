@@ -1,0 +1,113 @@
+package com.revature.screen;
+
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.revature.DAOImpl.CarDAOImpl;
+import com.revature.DAOImpl.CustomerDAOImpl;
+import com.revature.DAOImpl.OfferDAOImpl;
+
+public class CustomerScreen {
+	CustomerDAOImpl cdi = new CustomerDAOImpl();
+	CarDAOImpl cadi = new CarDAOImpl();
+	OfferDAOImpl odi = new OfferDAOImpl();
+	String username = null;
+	
+public void customerMenu() throws SQLException {
+	Scanner thescan = new Scanner(System.in);
+	System.out.println("To login enter 'login'. To register enter 'register'");
+	String answer = thescan.nextLine();
+	switch (answer) {
+	case "register" :
+		try {
+		cdi.newAccount();
+		} catch (SQLException e) {
+			System.out.println("Account already exists");
+			System.exit(0);
+		}
+		break;
+	case "login" :
+		while(username == null) {
+		try {
+			cdi.customerLogin();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		}
+	
+	
+	@SuppressWarnings("resource")
+	Scanner scan = new Scanner(System.in);
+	System.out.println("Please select an option:");
+	System.out.println("1: View cars on lot");
+	System.out.println("2: Make offer on car");
+	System.out.println("3: View cars on lot");
+	System.out.println("4: View my cars");
+	System.out.println("5: View my offers and car payment info");
+	System.out.println("6: Make car payment");
+	System.out.println("7: Exit");
+	int option = scan.nextInt();
+	
+	switch (option) {
+	case 1:
+		cadi.getCars();
+		customerMenu();
+		break;
+	case 2:
+		String username;
+		int carVin;
+		double offerAmount;
+		Scanner scannn = new Scanner(System.in);
+		Scanner scanint = new Scanner(System.in);
+		Scanner scandub = new Scanner(System.in);
+		System.out.println("Please enter your username to make an offer");
+		username = scannn.nextLine();
+		System.out.println("Please enter the car's VIN you would like to make an offer on");
+		carVin = scanint.nextInt();
+		System.out.println("Please enter the amount you would like to offer");
+		offerAmount = scandub.nextDouble();
+		odi.createOffer(username, carVin, offerAmount);
+		customerMenu();
+		break;
+	case 3:
+		cadi.getCars();
+		customerMenu();
+		break;
+	case 4:
+		Scanner scanthestring = new Scanner(System.in);
+		System.out.println("Please verify your username");
+		username = scanthestring.nextLine();
+		cadi.getMyCars(username);
+		customerMenu();
+		break;
+	case 5:
+		String username1;
+		Scanner scanString = new Scanner(System.in);
+		System.out.println("Please confirm your username");
+		username1 = scanString.nextLine();
+		odi.viewOffers(username1);
+		customerMenu();
+		break;
+	case 6:
+		String username2;
+		int carVin2;
+		Scanner scs = new Scanner(System.in);
+		Scanner sci = new Scanner(System.in);
+		System.out.println("Please confirm your username: ");
+		username2 = scs.nextLine();
+		System.out.println("What is the VIN of the car you're making the payment for");
+		carVin2 = sci.nextInt();
+		odi.makePayment(username2, carVin2);
+		customerMenu();
+		break;
+	case 7:
+		customerMenu();
+		break;
+	}
+	
+	}
+	
+	
+	
+}
+}

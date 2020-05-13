@@ -1,0 +1,88 @@
+package com.revature.screen;
+
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.revature.DAOImpl.CarDAOImpl;
+import com.revature.DAOImpl.CustomerDAOImpl;
+import com.revature.DAOImpl.OfferDAOImpl;
+
+public class EmployeeScreen {
+	CarDAOImpl cadi = new CarDAOImpl();
+	CustomerDAOImpl cdi = new CustomerDAOImpl();
+	OfferDAOImpl odi = new OfferDAOImpl();
+	LoginScreen ls = new LoginScreen();
+	
+	public void employeeMenu() {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter an option:");
+		System.out.println("1: Show all cars");
+		System.out.println("2: Add new car");
+		System.out.println("3: Get all customer info");
+		System.out.println("4: View all offers");
+		System.out.println("5: Accept/Deny offer");
+		System.out.println("6: Exit");
+		int option = scan.nextInt();
+		
+		switch (option) {
+		case 1:
+			try {
+				cadi.getAllCars();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			employeeMenu();
+			break;
+		case 2:
+			try {
+				cadi.insertCar();
+				employeeMenu();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case 3:
+			try {
+				cdi.getCustomerList();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			employeeMenu();
+			break;
+		case 4:
+			try {
+				odi.viewAllOffers();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			employeeMenu();
+			break;
+		case 5:
+			String username;
+			int carVin;
+			Scanner scanny = new Scanner(System.in);
+			System.out.println("Alrighty, let's go ahead and deny or accept an offer");
+			System.out.println("Please enter the username");
+			username = scanny.nextLine();
+			System.out.println("Please enter the cars' VIN");
+			carVin = scanny.nextInt();
+			try {
+				odi.acceptDenyOffer(username, carVin);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			employeeMenu();
+			break;
+		case 0:
+			try {
+				ls.mainScreen();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		break;
+		}
+		
+	}
+	
+}

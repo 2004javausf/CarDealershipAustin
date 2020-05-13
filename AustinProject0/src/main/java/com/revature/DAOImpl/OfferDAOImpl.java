@@ -21,28 +21,20 @@ public class OfferDAOImpl implements OfferDAO {
 	public void createOffer(String username, int carVin, double offerAmount) throws SQLException {
 		double offerMonthlyPmt = 0;
 		int offerPmtsLeft = 0;
+		String answer1;
 		
 		Connection conn = cf.getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs;
-		Scanner scan = new Scanner(System.in);
+		Scanner scanStr = new Scanner(System.in);
 		System.out.println("Would you like to make an offer? ('Yes' or 'No')");
-		String answer = scan.nextLine();
-		if (answer == "Yes") {
+		answer1 = scanStr.nextLine();
+		if (answer1.equalsIgnoreCase("Yes")) {
 			rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin );
-			if(rs.next() == true) {
-				System.out.println("You have already made an offer on this car!");
-				return;
-			}
 			rs = stmt.executeQuery("INSERT INTO OFFER VALUES(MYSEQ.NEXTVAL,'" + username + "'," + carVin + "," + offerMonthlyPmt + "," + offerAmount + "," + offerPmtsLeft + ",'NotAccepted')");
 			System.out.println("Awesome! We have received your offer!");
-			return;
-		} else if (answer == "No") {
-			System.out.println("Okay!");
-		}
-		System.out.println("Incorrect input");
-		return;
-	}
+			}
+		} 
 
 	@Override
 	public void acceptDenyOffer(String username, int carVin) throws SQLException {
@@ -55,7 +47,7 @@ public class OfferDAOImpl implements OfferDAO {
 			System.out.println("Offer not found!");
 			return;
 		}
-		ResultSet rss = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_ID = " + carVin);
+		ResultSet rss = stmt.executeQuery("SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
 		while(rss.next()) {
 			Offer offer = new Offer(rss.getInt(1), rss.getString(2), rss.getInt(3), rss.getDouble(4), rss.getDouble(5), rss.getInt(6), rss.getString(7));
 			offerInStringForm = offer.toString();
@@ -86,7 +78,7 @@ public class OfferDAOImpl implements OfferDAO {
 		// TODO Auto-generated method stub
 		List<Offer> offers = new ArrayList<Offer>();
 		Connection conn = cf.getConnection();
-		String sql = "SELECT * FROM OFFER WHERE USERNAME = ?";
+		String sql = "SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
