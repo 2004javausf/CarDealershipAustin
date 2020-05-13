@@ -1,0 +1,14 @@
+package com.revature.DAOImpl;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class OfferDAOImplTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

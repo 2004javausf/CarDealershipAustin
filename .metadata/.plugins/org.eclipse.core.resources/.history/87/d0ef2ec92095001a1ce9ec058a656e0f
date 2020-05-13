@@ -47,8 +47,8 @@ do {
 	System.out.println("1: View cars on lot");
 	System.out.println("2: Make offer on car");
 	System.out.println("3: View my cars");
-	System.out.println("4: View my offer");
-	System.out.println("5: View car payment");
+	System.out.println("4: View my offers and car payment info");
+	System.out.println("5: Make car payment");
 	System.out.println("6: Exit");
 	int option = scan.nextInt();
 	

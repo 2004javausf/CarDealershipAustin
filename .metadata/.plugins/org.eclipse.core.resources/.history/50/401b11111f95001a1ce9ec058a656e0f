@@ -63,15 +63,15 @@ public class OfferDAOImpl implements OfferDAO {
 			callable.setInt(2, carVin);
 			callable.execute();
 			System.out.println("You have successfully confirmed the offer!");
-			//tried to set monthly payment and payments left here
-//			int offerAmountMn;
-//			int offPmtLeft;
-//			
-//			String sql1;
-//			offerAmountMn = (int) ((rss.getDouble(5) / 12));
-//			offPmtLeft = (int) (offerAmountMn / rss.getDouble(5));
-//			sql1 = "UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerAmountMn + "',' OFFER_PAYMENTS_LEFT = '" + offPmtLeft + "' WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = '" + carVin + "'";
-//			stmt.executeUpdate(sql1);
+			int offerAmountMn;
+			int offPmtLeft;
+			
+			String sql1;
+			offerAmountMn = (int) ((rss.getDouble(5) / 12));
+			offPmtLeft = (int) (offerAmountMn / rss.getDouble(5));
+			sql1 = "UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerAmountMn + "',' OFFER_PAYMENTS_LEFT = '" + offPmtLeft + "' WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = '" + carVin + "'";
+			stmt.executeUpdate(sql1);
+			return;
 			
 		} else if(answer.equals("D")) {
 			rs = stmt.executeQuery("DELETE FROM OFFER WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);

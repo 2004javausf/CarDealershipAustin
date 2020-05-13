@@ -63,7 +63,6 @@ public class OfferDAOImpl implements OfferDAO {
 			callable.setInt(2, carVin);
 			callable.execute();
 			System.out.println("You have successfully confirmed the offer!");
-			//tried to set monthly payment and payments left here
 //			int offerAmountMn;
 //			int offPmtLeft;
 //			

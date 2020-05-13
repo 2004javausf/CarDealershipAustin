@@ -1,4 +1,5 @@
 ---------------------------------
+
 CREATE TABLE CAR(
 CAR_VIN INTEGER,
 CAR_MAKE VARCHAR2(30),

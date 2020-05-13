@@ -1,0 +1,42 @@
+package com.revature.DAOImpl;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import com.revature.bean.Offer;
+import com.revature.util.ConnFactory;
+
+import junit.framework.Assert;
+
+class OfferDAOImplTest {
+
+	@Test
+	void test(String username) throws SQLException {
+		ConnFactory cf = ConnFactory.getInstance();
+		List<Offer> offers = new ArrayList<Offer>();
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM OFFER WHERE CUSTOMER_USERNAME = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		Offer offer = null;
+		while(rs.next()) {
+			offer = new Offer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7));
+			offers.add(offer);
+		}
+		for(int i = 0; i < offers.size(); i++) {
+			System.out.println(offers.get(i));
+			Assert.assertEquals(true, true);
+		}
+		
+	}
+
+}
