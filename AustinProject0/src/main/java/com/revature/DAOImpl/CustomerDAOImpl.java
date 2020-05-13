@@ -52,7 +52,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		String password = sc.nextLine();
 		
 		insertCustomer(username, password);
-		
 	}
 
 	@Override

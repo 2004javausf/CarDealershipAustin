@@ -1,0 +1,38 @@
+package com.revature.DAOImpl;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.revature.dao.EmployeeDAO;
+import com.revature.util.ConnFactory;
+
+public class EmployeeDAOImpl implements EmployeeDAO {
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	@Override
+	public String employeeLogin() throws SQLException {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter your employee ID: ");
+		String username = scan.nextLine();
+		System.out.println("Please enter your password: ");
+		String password = scan.nextLine();
+		
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT EMPLOYEE_USERNAME, EMPLOYEE_PASSWORD FROM EMPLOYEE WHERE EMPLOYEE_USERNAME = '" + username + "' AND EMPLOYEE_PASSWORD = '" + password + "'");
+		
+		if(rs.next() == false) {
+			System.out.println("Please try to login again. Wrong credentials.");
+			employeeLogin();
+		} else {
+			System.out.println("Successful login.");
+		}
+		return username;
+		
+	}
+
+}

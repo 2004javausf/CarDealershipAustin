@@ -11,7 +11,7 @@ public interface CarDAO {
 	public void insertCar() throws SQLException;
 	
 	//Customers list of available cars
-	public List<Car> getCars() throws SQLException;
+	public String getCars() throws SQLException;
 	
 	//Employee's list of all cars
 	public List<Car> getAllCars() throws SQLException;

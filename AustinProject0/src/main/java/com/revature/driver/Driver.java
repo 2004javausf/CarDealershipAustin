@@ -10,13 +10,12 @@ public class Driver {
 	
 	
 	public static void main(String[] args) throws SQLException {
+		
 		ConnFactory cf = ConnFactory.getInstance();
 		cf.getConnection();
 		
 		LoginScreen ls = new LoginScreen();
 		ls.mainScreen();
-		
-		
 		
 		System.exit(0);
 	}

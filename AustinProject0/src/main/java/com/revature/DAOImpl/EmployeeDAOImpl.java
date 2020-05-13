@@ -14,24 +14,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	@Override
 	public String employeeLogin() throws SQLException {
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter your employee ID: ");
-		String username = scan.nextLine();
+		String username1 = scan.nextLine();
 		System.out.println("Please enter your password: ");
-		String password = scan.nextLine();
+		String password1 = scan.nextLine();
+		String username = "austin";
+		String password = "coburn";
 		
 		Connection conn = cf.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT FROM EMPLOYEE WHERE EMPLOYEE_USERNAME = '" + username + "' AND EMPLOYEE_PASSWORD = '" + password + "'");
+		String sql = "INSERT INTO EMPLOYEE VALUES('" + username + "', '" + password + "')";
+		stmt.executeUpdate(sql);
+		ResultSet rss = stmt.executeQuery("SELECT EMPLOYEE_USERNAME, EMPLOYEE_PASSWORD FROM EMPLOYEE WHERE EMPLOYEE_USERNAME = '" + username1 + "' AND EMPLOYEE_PASSWORD = '" + password1 + "'");
 		
-		if(rs.next() == false) {
+		if(rss.next() == false) {
 			System.out.println("Please try to login again. Wrong credentials.");
-			username = null;
+			username1 = null;
 			employeeLogin();
 		} else {
 			System.out.println("Successful login.");
 		}
-		return username;
+		return username1;
+		
 	}
 
 }

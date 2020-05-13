@@ -1,0 +1,53 @@
+package com.revature.DAOImpl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.Scanner;
+
+import com.revature.bean.Car;
+import com.revature.dao.CarDAO;
+import com.revature.util.ConnFactory;
+
+public class CarDAOImpl implements CarDAO {
+	ConnFactory cf = ConnFactory.getInstance();
+	@Override
+	public void insertCar() throws SQLException {
+		String owner = null;
+		Scanner scan1 = new Scanner(System.in);
+		Scanner scan2 = new Scanner(System.in);
+		System.out.println("Enter the make");
+		String make = scan1.nextLine();
+		System.out.println("Enter the model");
+		String model = scan1.nextLine();
+		System.out.println("Enter the year");
+		int year = scan2.nextInt();
+		
+				
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "INSERT INTO CAR VALUES(MYSEQ2.NEXTVAL" + ",'" + make + "','" + model + "','" + year + "','" + owner + "', 'Available')";
+		stmt.executeUpdate(sql);
+		
+	}
+
+	@Override
+	public List<Car> getCars() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Car> getAllCars() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void getMyCars(String username) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

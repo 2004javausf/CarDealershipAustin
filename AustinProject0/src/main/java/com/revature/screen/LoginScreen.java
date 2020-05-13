@@ -9,6 +9,8 @@ import com.revature.DAOImpl.EmployeeDAOImpl;
 public class LoginScreen {
 	CustomerDAOImpl cdi = new CustomerDAOImpl();
 	EmployeeDAOImpl edi = new EmployeeDAOImpl();
+	CustomerScreen cs = new CustomerScreen();
+	EmployeeScreen es = new EmployeeScreen();
 	
 	public void mainScreen () throws SQLException {
 		@SuppressWarnings("resource")
@@ -24,13 +26,16 @@ public class LoginScreen {
 		switch (option) {
 			case 1 :
 				cdi.customerLogin();
+				cs.customerMenu();
 			break;
 			case 2 :
 				edi.employeeLogin();
+				es.employeeMenu();
 			break;
 			case 3 :
 				cdi.newAccount();
 				cdi.customerLogin();
+				cs.customerMenu();
 			break;
 			default :
 				System.out.println("Not a valid option moron");

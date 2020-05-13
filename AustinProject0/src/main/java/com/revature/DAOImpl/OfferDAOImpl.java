@@ -110,6 +110,7 @@ public class OfferDAOImpl implements OfferDAO {
 		int offerPmtsLeft = 0;
 		double offerAmount = 0;
 		String offerStatus = "";
+		double remainingBalance = 0;
 		
 		rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CAR_VIN = " + carVin + "AND CUSTOMER_USERNAME = '" + username + "'");
 		while (rs.next()) {
@@ -127,10 +128,11 @@ public class OfferDAOImpl implements OfferDAO {
 			}
 			
 			offerMonthlyPmt= (offerAmount / 12);
-			offerPmtsLeft = (int) (offerAmount / offerMonthlyPmt); 
+			remainingBalance = offerAmount - offerMonthlyPmt;
+			offerPmtsLeft = (int) (remainingBalance / offerMonthlyPmt); 
 			
-			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "WHERE USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
-			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
 			
 			System.out.println("Thank you for making a payment for CarVIN: " + carVin);
 			System.out.println("You have" + offerPmtsLeft + "payments left before it's paid off!");
@@ -140,8 +142,17 @@ public class OfferDAOImpl implements OfferDAO {
 
 	@Override
 	public void viewAllOffers() throws SQLException {
-		// TODO Auto-generated method stub
-		
+		List<Offer> offers = new ArrayList<Offer>();
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM OFFER");
+		Offer offer = null;
+		while(rs.next()) {
+			offer = new Offer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7));
+			offers.add(offer);
+		}
+		for(int i = 0; i < offers.size(); i++) {
+			System.out.println(offers.get(i));
+		}	
 	}
-
 }
