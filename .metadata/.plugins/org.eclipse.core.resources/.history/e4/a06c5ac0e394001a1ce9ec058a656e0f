@@ -92,6 +92,7 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void makePayment(String username, int carVin) throws SQLException {
 		Connection conn = cf.getConnection();
@@ -118,7 +119,7 @@ public class OfferDAOImpl implements OfferDAO {
 				return;
 			}
 			
-			offerMonthlyPmt= (offerAmount / (offerPmtsLeft-1));
+			offerMonthlyPmt= (offerAmount / 12);
 			remainingBalance = offerAmount - offerMonthlyPmt;
 			offerPmtsLeft = (int) (remainingBalance / offerMonthlyPmt); 
 			

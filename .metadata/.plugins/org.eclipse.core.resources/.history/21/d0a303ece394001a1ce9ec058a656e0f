@@ -92,6 +92,7 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void makePayment(String username, int carVin) throws SQLException {
 		Connection conn = cf.getConnection();

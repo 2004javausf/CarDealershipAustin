@@ -1,5 +1,4 @@
 INDEX VERSION 1.131+D:\Projects\Project0-Austin\.metadata\.plugins\org.eclipse.jdt.core
-3971780201.index
 4159017284.index
 2973695523.index
 1148937498.index

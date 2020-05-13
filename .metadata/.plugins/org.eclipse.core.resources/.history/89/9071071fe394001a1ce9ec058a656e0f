@@ -92,6 +92,7 @@ public class OfferDAOImpl implements OfferDAO {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void makePayment(String username, int carVin) throws SQLException {
 		Connection conn = cf.getConnection();
@@ -102,9 +103,15 @@ public class OfferDAOImpl implements OfferDAO {
 		double offerAmount = 0;
 		String offerStatus = "";
 		double remainingBalance = 0;
+		String sql = "";
 		
 		rs = stmt.executeQuery("SELECT * FROM OFFER WHERE CAR_VIN = " + carVin + "AND CUSTOMER_USERNAME = '" + username + "'");
-		while (rs.next()) { 
+		while (rs.next()) {
+			offerMonthlyPmt= (offerAmount / 12);
+			remainingBalance = offerAmount - offerMonthlyPmt;
+			offerPmtsLeft = (int) (remainingBalance / offerMonthlyPmt); 
+			sql = "UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "',' OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE CUSTOMER_USERNAME = '" + username + "'";
+			stmt.executeUpdate(sql); 
 			offerPmtsLeft = rs.getInt(6);
 			offerMonthlyPmt = rs.getDouble(4);
 			offerAmount = rs.getDouble(5);
@@ -118,12 +125,12 @@ public class OfferDAOImpl implements OfferDAO {
 				return;
 			}
 			
-			offerMonthlyPmt= (offerAmount / (offerPmtsLeft-1));
+			offerMonthlyPmt= (offerAmount / 12);
 			remainingBalance = offerAmount - offerMonthlyPmt;
 			offerPmtsLeft = (int) (remainingBalance / offerMonthlyPmt); 
 			
-			stmt.executeUpdate("UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
-			stmt.executeUpdate("UPDATE OFFER SET OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_MONTHLY_PAYMENT = " + offerMonthlyPmt + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
+			rs = stmt.executeQuery("UPDATE OFFER SET OFFER_PAYMENTS_LEFT = " + offerPmtsLeft + "WHERE CUSTOMER_USERNAME = '" + username + "' AND CAR_VIN = " + carVin);
 			
 			System.out.println("Thank you for making a payment for CarVIN: " + carVin);
 			System.out.println("You have" + offerPmtsLeft + "payments left before it's paid off!");
