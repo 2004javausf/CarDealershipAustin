@@ -11,6 +11,7 @@ import java.util.Scanner;
 import com.revature.bean.Customer;
 import com.revature.dao.CustomerDAO;
 import com.revature.util.ConnFactory;
+import com.revature.util.LogMe;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	
@@ -65,7 +66,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Connection conn = cf.getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT CUSTOMER_USERNAME, CUSTOMER_PASSWORD FROM CUSTOMER WHERE CUSTOMER_USERNAME = '" + username + "' AND CUSTOMER_PASSWORD = '" + password + "'");
-		
+		LogMe.logThis("info", "Logging info");
 		if(rs.next() == false) {
 			System.out.println("Please try again");
 			username = null;

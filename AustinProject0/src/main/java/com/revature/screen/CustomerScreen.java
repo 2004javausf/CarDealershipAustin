@@ -88,14 +88,14 @@ do {
 			e.printStackTrace();
 	} break;
 	case 5:
-		Scanner sci = new Scanner(System.in);
-		System.out.println("What is the VIN of the car you're making the payment for");
-		carVin = sci.nextInt();
-	try {
-		odi.makePayment(username, carVin);
-	} catch (SQLException e) {
-		System.out.println("Invalid");
-	} break;
+//		Scanner sci = new Scanner(System.in);
+//		System.out.println("What is the VIN of the car you're making the payment for");
+//		carVin = sci.nextInt();
+//	try {
+////	odi.makePayment(username, carVin);
+////	} catch (SQLException e) {
+////	System.out.println("Invalid");} 
+//		break;
 	case 6:
 		quit = true;
 		break;

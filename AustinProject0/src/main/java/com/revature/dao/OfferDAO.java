@@ -9,7 +9,7 @@ public interface OfferDAO {
 	
 	public void viewOffers(String username) throws SQLException;
 	
-	public void makePayment(String username, int carVin) throws SQLException;
+	//public void makePayment(String username, int carVin) throws SQLException;
 	
 	public void viewAllOffers() throws SQLException;
 }

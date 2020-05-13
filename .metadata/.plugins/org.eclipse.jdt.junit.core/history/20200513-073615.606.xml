@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerDAOImplTest" project="AustinProject0" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.DAOImpl.CustomerDAOImplTest" time="1.188" displayname="CustomerDAOImplTest" uniqueid="[engine:junit-jupiter]/[class:com.revature.DAOImpl.CustomerDAOImplTest]">
+    <testcase name="getCustomerCarsTest" classname="com.revature.DAOImpl.CustomerDAOImplTest" time="1.188" displayname="getCustomerCarsTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.DAOImpl.CustomerDAOImplTest]/[method:getCustomerCarsTest()]"/>
+  </testsuite>
+</testrun>
